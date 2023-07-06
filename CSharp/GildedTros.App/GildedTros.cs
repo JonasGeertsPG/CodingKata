@@ -56,8 +56,8 @@ namespace GildedTros.App
                         if (CurrentItem.Quality != 0)
                         {
 
-                            if (CurrentItem.SellIn <= 0) CurrentItem.Quality -= 2;
-                            else CurrentItem.Quality -= 1;
+                            if (CurrentItem.SellIn < 0) CurrentItem.Quality -= 4;
+                            else CurrentItem.Quality -= 2;
                             if (CurrentItem.Quality == -1) CurrentItem.Quality = 0;
                             CurrentItem.SellIn -= 1;
                             Items[i] = CurrentItem;
@@ -95,7 +95,7 @@ namespace GildedTros.App
                     if (CurrentItem.Quality != 0 && CurrentItem.Quality != 50)
                     {
                         if (CurrentItem.SellIn > 5 && CurrentItem.SellIn <= 10) CurrentItem.Quality += 2;
-                        else if (CurrentItem.SellIn <= 5) CurrentItem.Quality += 3;
+                        else if (CurrentItem.SellIn <= 5 && CurrentItem.SellIn >= 0) CurrentItem.Quality += 3;
                         else CurrentItem.Quality -= 1; //Ik ging er vanuit dat de gewone regels gelden als deze niet zijn SellinCriteria benaderd, mocht deze ook moeten stijgen, dan is het uiteraard += 1;
                     }
                     if (CurrentItem.Quality > 50) CurrentItem.Quality = 50;
@@ -109,7 +109,8 @@ namespace GildedTros.App
                 #region //Other Products//
                 if (CurrentItem.Quality != 0) 
                 {
-                    CurrentItem.Quality -= 1;
+                    if (CurrentItem.SellIn < 0) CurrentItem.Quality -= 2;
+                    else CurrentItem.Quality -= 1;
                 }
                 CurrentItem.SellIn -= 1;
                 Items[i] = CurrentItem;

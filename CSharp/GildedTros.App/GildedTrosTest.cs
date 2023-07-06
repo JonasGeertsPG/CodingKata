@@ -5,7 +5,7 @@ namespace GildedTros.App
 {
     public class GildedTrosTest
     {
-        /*BL: Stays the same*/
+        /*BL: Quality always 80, never has to be sold so SellIn = 0*/
         [Fact]
         public void LegendaryItem()
         {
